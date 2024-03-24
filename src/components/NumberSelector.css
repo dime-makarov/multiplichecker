@@ -1,0 +1,12 @@
+
+section#number-selector button {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: green;
+    border-radius: 5px;
+    cursor: pointer;
+}
