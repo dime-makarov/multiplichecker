@@ -44,22 +44,24 @@ function App() {
     }
 
     return (
-        <>
+        <div id="main-area">
             <NumberSelector onSelect={handleSelectTimesNumber} />
             <section id="equations">
                 {equations.map((eq, idx) => (
                     <Equation
-                        key={eq[0]}
+                        key={idx}
                         index={idx}
                         equation={eq}
                         onChangeAnswer={handleChangeAnswer}
                     />
                 ))}
             </section>
-            <button type="button" onClick={onCheck}>
-                CHECK
-            </button>
-        </>
+            <section id="bottom-controls">
+                <button id="button-check" type="button" onClick={onCheck}>
+                    CHECK
+                </button>
+            </section>
+        </div>
     );
 }
 

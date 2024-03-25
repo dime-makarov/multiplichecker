@@ -1,4 +1,22 @@
-.image-result {
-    width: 20px;
-    height: 20px;
+
+div.equation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+span.number, span.sign {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+input.result {
+    font-size: 3rem;
+    width: 100px;
+    text-align: center;
+}
+
+img.image-result {
+    width: 50px;
+    height: 50px;
 }
