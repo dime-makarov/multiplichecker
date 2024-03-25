@@ -5,42 +5,60 @@ import Equation from "./components/Equation.jsx";
 import NumberSelector from "./components/NumberSelector.jsx";
 
 function App() {
-
-    function generateEquations(number) {
+    function generateEquations(times) {
         return [
-            [2, number],
-            [3, number],
-            [4, number],
-            [5, number],
-            [6, number],
-            [7, number],
-            [8, number],
-            [9, number]
+            { baseNum: 2, timesNum: times, answer: "", showResult: false },
+            { baseNum: 3, timesNum: times, answer: "", showResult: false },
+            { baseNum: 4, timesNum: times, answer: "", showResult: false },
+            { baseNum: 5, timesNum: times, answer: "", showResult: false },
+            { baseNum: 6, timesNum: times, answer: "", showResult: false },
+            { baseNum: 7, timesNum: times, answer: "", showResult: false },
+            { baseNum: 8, timesNum: times, answer: "", showResult: false },
+            { baseNum: 9, timesNum: times, answer: "", showResult: false },
         ];
     }
 
-    const [number, setNumber] = useState(2);
-    const [isShowResult, setIsShowResult] = useState(false);
-    const equations = generateEquations(number);
+    const [equations, setEquations] = useState(generateEquations(2));
 
-    function onSelectNumber(number) {
-        setNumber(number);
-        setIsShowResult(false);
+    function handleSelectTimesNumber(newTimesNumber) {
+        setEquations(generateEquations(newTimesNumber));
+    }
+
+    function handleChangeAnswer(index, newValue) {
+        setEquations((prevEquations) => {
+            const newEquations = [...prevEquations];
+            newEquations[index].answer = newValue;
+            return newEquations;
+        });
     }
 
     function onCheck() {
-        setIsShowResult(true);
+        setEquations((prevEquations) => {
+            const newEquations = [...prevEquations];
+           
+            for (const eq of newEquations)
+                eq.showResult = true;
+
+            return newEquations;
+        });
     }
 
     return (
         <>
-            <NumberSelector onSelect={onSelectNumber} />
+            <NumberSelector onSelect={handleSelectTimesNumber} />
             <section id="equations">
-                {equations.map((eq) => (
-                    <Equation key={eq[0]} number1={eq[0]} number2={eq[1]} isShowResult={isShowResult} />
+                {equations.map((eq, idx) => (
+                    <Equation
+                        key={eq[0]}
+                        index={idx}
+                        equation={eq}
+                        onChangeAnswer={handleChangeAnswer}
+                    />
                 ))}
             </section>
-            <button type="button" onClick={onCheck}>CHECK</button>
+            <button type="button" onClick={onCheck}>
+                CHECK
+            </button>
         </>
     );
 }

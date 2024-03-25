@@ -1,28 +1,36 @@
-import { useState } from "react";
-
-import './Equation.css';
+import "./Equation.css";
 
 import check from "../assets/check.png";
 import cross from "../assets/cross.png";
 
-export default function Equation({number1, number2, isShowResult}) {
-    const [answer, setAnswer] = useState(0);
-    const isCorrect = (answer === number1 * number2);
-    
-    function handleChange(event) {
-        setAnswer(+(event.target.value));
-    }
+export default function Equation({
+    index,
+    equation,
+    onChangeAnswer
+}) {
+    const numericAnswer = equation.answer.length === 0 ? 0 : +(equation.answer);
+    const isCorrect = (numericAnswer === equation.baseNum * equation.timesNum);
 
     return (
         <div className="equation">
-            <span className="number">{number1}</span>
+            <span className="number">{equation.baseNum}</span>
             <span className="sign">&times;</span>
-            <span className="number">{number2}</span>
+            <span className="number">{equation.timesNum}</span>
             <span className="sign">=</span>
-            <input className="result" type="number" value={answer} onChange={handleChange} />
+            <input
+                className="result"
+                type="number"
+                value={equation.answer}
+                disabled={equation.showResult}
+                onChange={(event) => onChangeAnswer(index, event.target.value)}
+            />
 
-            {isShowResult && isCorrect && <img className="image-result" src={check} />}
-            {isShowResult && !isCorrect && <img className="image-result" src={cross} />}
+            {equation.showResult && isCorrect && (
+                <img className="image-result" src={check} alt="Correct" />
+            )}
+            {equation.showResult && !isCorrect && (
+                <img className="image-result" src={cross} alt="Wrong" />
+            )}
         </div>
     );
 }
