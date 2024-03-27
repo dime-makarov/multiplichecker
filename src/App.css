@@ -4,19 +4,3 @@ div#main-area {
     flex-direction: column;
     align-items: center;
 }
-
-section#bottom-controls {
-    margin: 20px;
-}
-
-button#button-check {
-    width: 300px;
-    border: 0;
-    padding: 10px;
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    background-color: #00A2E4;
-    border-radius: 5px;
-    cursor: pointer;
-}
