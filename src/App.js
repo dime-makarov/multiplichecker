@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "./App.css";
-import Equation from "./components/Equation.jsx";
+import Equations from "./components/Equations.jsx";
 import NumberSelector from "./components/NumberSelector.jsx";
 
 function App() {
@@ -68,16 +68,7 @@ function App() {
     return (
         <div id="main-area">
             <NumberSelector onSelect={handleSelectTimesNumber} />
-            <section id="equations">
-                {equations.map((eq, idx) => (
-                    <Equation
-                        key={idx}
-                        index={idx}
-                        equation={eq}
-                        onChangeAnswer={handleChangeAnswer}
-                    />
-                ))}
-            </section>
+            <Equations equations={equations} onChangeAnswer={handleChangeAnswer} />
             <section id="bottom-controls">
                 <button id="button-check" type="button" onClick={onCheck}>
                     CHECK
